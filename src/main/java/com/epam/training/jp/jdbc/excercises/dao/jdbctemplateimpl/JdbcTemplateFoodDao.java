@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import com.epam.training.jp.jdbc.excercises.dao.FoodDao;
@@ -15,22 +16,30 @@ public class JdbcTemplateFoodDao extends JdbcDaoSupport implements FoodDao {
 		setDataSource(dataSource);
 	}
 
+	/*
+	 * `ID` INT NOT NULL AUTO_INCREMENT, `CALORIES` INT NULL DEFAULT NULL,
+	 * `ISVEGAN` BIT NOT NULL, `NAME` VARCHAR(255) NOT NULL, `PRICE` INT NOT
+	 * NULL,
+	 */
+
+	private JdbcTemplate temp;
+	
 	@Override
 	public Food findFoodByName(String name) {
-		//TODO: implement
-		throw new UnsupportedOperationException();
+		String query = "SELECT * FROM food WHERE NAME = ?";
+		Food food = null;
+
+		return food;
 	}
 
 	@Override
 	public void updateFoodPriceByName(String name, int newPrice) {
-		//TODO: implement
-		throw new UnsupportedOperationException();
+		String update = "UPDATE food SET PRICE = ? WHERE NAME = ?";
 	}
 
 	@Override
 	public void save(List<Food> foods) {
-		//TODO: implement with batch
-		throw new UnsupportedOperationException();
+		String insert = "INSERT INTO food SET (CALORIES, ISVEGAN, NAME, PRICE) VALUES (?,?,?,?)";
 		
 	}
 
