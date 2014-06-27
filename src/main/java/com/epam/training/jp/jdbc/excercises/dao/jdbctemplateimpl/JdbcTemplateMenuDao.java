@@ -1,5 +1,7 @@
 package com.epam.training.jp.jdbc.excercises.dao.jdbctemplateimpl;
 
+import java.sql.Types;
+
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,10 +21,13 @@ public class JdbcTemplateMenuDao extends JdbcDaoSupport implements MenuDao {
 	 */
 
 	private JdbcTemplate temp;
-	
+
 	@Override
 	public void removeMenu(int id) {
 		String delete = "DELETE FROM menu WHERE ID = ?";
+
+		temp = new JdbcTemplate(getDataSource());
+		temp.update(delete, id, Types.INTEGER);
 	}
 
 }

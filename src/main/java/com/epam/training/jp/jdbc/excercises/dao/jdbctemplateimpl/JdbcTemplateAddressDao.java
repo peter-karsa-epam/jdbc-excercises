@@ -1,8 +1,12 @@
 package com.epam.training.jp.jdbc.excercises.dao.jdbctemplateimpl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import com.epam.training.jp.jdbc.excercises.dao.AddressDao;
@@ -22,12 +26,23 @@ public class JdbcTemplateAddressDao extends JdbcDaoSupport implements
 	 */
 
 	private JdbcTemplate temp;
+	private SimpleJdbcInsert ins;
 
 	@Override
 	public void save(Address address) {
-		String insert = "INSERT INTO address SET (?,?,?,?) VALUES (?,?,?,?)";
-		
-		
+		// String insert = "INSERT INTO address SET (?,?,?,?) VALUES (?,?,?,?)";
+
+		temp = new JdbcTemplate(getDataSource());
+		ins = new SimpleJdbcInsert(temp).withTableName("address");
+
+		Map<String, Object> params = new HashMap<>();
+		params.put("CITY", address.getCity());
+		params.put("COUNTRY", address.getCountry());
+		params.put("STREET", address.getStreet());
+		params.put("ZIPCODE", address.getZipCode());
+
+		ins.execute(params);
+
 	}
 
 }
