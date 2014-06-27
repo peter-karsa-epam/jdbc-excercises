@@ -17,4 +17,5 @@ public class JdbcTemplateMenuFoodDao extends JdbcDaoSupport implements MenuFoodD
 		//TODO: implement
 		throw new UnsupportedOperationException();
 	}
+	
 }

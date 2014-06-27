@@ -34,5 +34,4 @@ public class JdbcTemplateFoodDao extends JdbcDaoSupport implements FoodDao {
 		
 	}
 
-	
 }

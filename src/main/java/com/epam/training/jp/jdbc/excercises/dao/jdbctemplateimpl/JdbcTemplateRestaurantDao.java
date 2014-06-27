@@ -31,7 +31,4 @@ public class JdbcTemplateRestaurantDao extends JdbcDaoSupport implements Restaur
 		throw new UnsupportedOperationException();
 	}
 	
-
-
-
 }
